@@ -21,7 +21,7 @@ public class FlowTest {
     private final String workingDir = System.getProperty("user.dir");
 
     private ApplicationServer registrationServer = new ApplicationServer(workingDir + "/../applications/registration-server/build/libs/registration-server.jar", "8883");
-    private ApplicationServer allocationsServer = new ApplicationServer(workingDir + "/../applications/allocations-server/build/libs/allocations-server.jar", "8881");
+//    private ApplicationServer allocationsServer = new ApplicationServer(workingDir + "/../applications/allocations-server/build/libs/allocations-server.jar", "8881");
     private ApplicationServer backlogServer = new ApplicationServer(workingDir + "/../applications/backlog-server/build/libs/backlog-server.jar", "8882");
     private ApplicationServer timesheetsServer = new ApplicationServer(workingDir + "/../applications/timesheets-server/build/libs/timesheets-server.jar", "8884");
 
@@ -29,9 +29,9 @@ public class FlowTest {
         return "http://localhost:8883" + path;
     }
 
-    private String allocationsServerUrl(String path) {
-        return "http://localhost:8881" + path;
-    }
+//    private String allocationsServerUrl(String path) {
+//        return "http://localhost:8881" + path;
+//    }
 
     private String backlogServerUrl(String path) {
         return "http://localhost:8882" + path;
@@ -58,7 +58,7 @@ public class FlowTest {
     @Before
     public void setup() throws Exception {
         registrationServer.startWithDatabaseName("tracker_registration_test");
-        allocationsServer.startWithDatabaseName("tracker_allocations_test");
+//        allocationsServer.startWithDatabaseName("tracker_allocations_test");
         backlogServer.startWithDatabaseName("tracker_backlog_test");
         timesheetsServer.startWithDatabaseName("tracker_timesheets_test");
         ApplicationServer.waitOnPorts("8881", "8882", "8883", "8884");
@@ -68,7 +68,7 @@ public class FlowTest {
     @After
     public void tearDown() {
         registrationServer.stop();
-        allocationsServer.stop();
+//        allocationsServer.stop();
         backlogServer.stop();
         timesheetsServer.stop();
     }
@@ -106,23 +106,23 @@ public class FlowTest {
         assertThat(findResponseId(response)).isEqualTo(createdProjectId);
 
 
-        response = httpClient.get(allocationsServerUrl("/"));
+//        response = httpClient.get(allocationsServerUrl("/"));
         assertThat(response.body).isEqualTo("Noop!");
 
-        response = httpClient.post(
-            allocationsServerUrl("/allocations"), jsonMapBuilder()
-                .put("projectId", createdProjectId)
-                .put("userId", createdUserId)
-                .put("firstDay", "2015-05-17")
-                .put("lastDay", "2015-05-26")
-                .build()
-        );
+//        response = httpClient.post(
+//            allocationsServerUrl("/allocations"), jsonMapBuilder()
+//                .put("projectId", createdProjectId)
+//                .put("userId", createdUserId)
+//                .put("firstDay", "2015-05-17")
+//                .put("lastDay", "2015-05-26")
+//                .build()
+//        );
 
         long createdAllocationId = findResponseId(response);
         assertThat(createdAllocationId).isGreaterThan(0);
 
-        response = httpClient.get(allocationsServerUrl("/allocations?projectId=" + createdProjectId));
-        assertThat(findResponseId(response)).isEqualTo(createdAllocationId);
+//        response = httpClient.get(allocationsServerUrl("/allocations?projectId=" + createdProjectId));
+//        assertThat(findResponseId(response)).isEqualTo(createdAllocationId);
 
 
         response = httpClient.get(backlogServerUrl("/"));
