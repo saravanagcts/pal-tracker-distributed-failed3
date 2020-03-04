@@ -21,7 +21,7 @@ public class FlowTest {
     private final String workingDir = System.getProperty("user.dir");
 
     private ApplicationServer registrationServer = new ApplicationServer(workingDir + "/../applications/registration-server/build/libs/registration-server.jar", "8883");
-    private ApplicationServer allocationsServer = new ApplicationServer(workingDir + "/../applications/allocations-server/build/libs/allocations-server.jar", "8885");
+    private ApplicationServer allocationsServer = new ApplicationServer(workingDir + "/../applications/allocations-server/build/libs/allocations-server.jar", "8881");
     private ApplicationServer backlogServer = new ApplicationServer(workingDir + "/../applications/backlog-server/build/libs/backlog-server.jar", "8882");
     private ApplicationServer timesheetsServer = new ApplicationServer(workingDir + "/../applications/timesheets-server/build/libs/timesheets-server.jar", "8884");
 
@@ -30,7 +30,7 @@ public class FlowTest {
     }
 
     private String allocationsServerUrl(String path) {
-        return "http://localhost:8885" + path;
+        return "http://localhost:8881" + path;
     }
 
     private String backlogServerUrl(String path) {
