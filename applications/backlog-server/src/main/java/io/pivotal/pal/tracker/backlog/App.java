@@ -13,8 +13,8 @@ import org.springframework.web.client.RestOperations;
 
 import java.util.TimeZone;
 
-@EnableResourceServer
 @EnableWebSecurity
+@EnableResourceServer
 @EnableOAuth2Client
 @EnableEurekaClient
 @SpringBootApplication
