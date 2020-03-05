@@ -13,7 +13,7 @@ import java.util.TimeZone;
 @EnableWebSecurity
 @EnableResourceServer
 
-@EnableEurekaClient
+//@EnableEurekaClient
 @SpringBootApplication
 @ComponentScan({
     "io.pivotal.pal.tracker.accounts",
